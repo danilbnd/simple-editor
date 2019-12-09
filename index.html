@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>simple-editor</title>
+</head>
+<style>
+
+	body{
+		background: rgb(246, 57, 57);
+	}
+	.ba-container{
+		padding: 450px 20px;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+	.editor-view{
+		text-align: center;
+		border: 20px solid #235234;
+		color: #fff;
+		font-size: 30px;
+	}
+	
+	textarea{
+		margin: 0 auto;
+		border: 20px solid #235234;
+		color: #fff;
+		font-size: 30px;
+		background: none;
+		
+	}
+</style>
+<body>
+	<div class="ba-container">
+
+		<div class="editor-view">
+			<h2>Напиши в меня!!!</h2>
+			<p>Хочешь написать нажми <b>Ctr+E</b></p>
+			<p>Что бы сохранить записаное нажми <b>Ctr+S</b></p>
+			<p>Что бы выйти нажми <b>ESC</b></p>
+			</div>
+			<textarea name="textarea" id="textarea" cols="80" rows="10"></textarea>
+	
+	</div>
+	<script>
+		"use strict"
+
+
+		let view = document.querySelector('.editor-view');
+		let field = document.querySelector('#textarea');
+
+		field.hidden = true;
+
+		document.addEventListener('keydown', editorInit)
+
+
+		function editorInit(event) {
+
+			if (event.keyCode == 69 && event.ctrlKey && field.hidden) { //ctr+e
+				event.preventDefault();
+				field.value = view.innerHTML.trim();
+				view.hidden = true;
+				field.hidden = false;
+				field.focus();
+			}
+			if (event.keyCode == 83 && event.ctrlKey && !field.hidden) { //ctr+e
+				event.preventDefault();
+
+				view.innerHTML = field.value
+				view.hidden = false;
+				field.hidden = true;
+			
+			}
+
+			if (event.keyCode == 27 && !field.hidden) { //ctr+e
+				event.preventDefault();
+				
+				view.hidden = false;
+				field.hidden = true; 
+			
+			}
+		}
+	</script>
+</body>
+</html>
